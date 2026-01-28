@@ -1,0 +1,4 @@
+[Service]
+ExecStart=/home/pi/your-repo/deploy/start_app.sh
+WorkingDirectory=/home/pi/your-repo
+User=pi

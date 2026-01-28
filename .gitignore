@@ -1,0 +1,25 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment (Crucial)
+# We want the Pi to build its own venv based on requirements.txt
+venv/
+ENV/
+env/
+
+# Environment Variables / Secrets
+# Never upload your API keys or passwords!
+.env
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Raspberry Pi / Local IDE settings
+.vscode/
+.idea/
