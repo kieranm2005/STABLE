@@ -1,4 +1,15 @@
+[Unit]
+Description=STABLE App Service
+After=network-online.target
+Wants=network-online.target
+
 [Service]
-ExecStart=/home/pi/your-repo/deploy/start_app.sh
-WorkingDirectory=/home/pi/your-repo
+Type=simple
 User=pi
+WorkingDirectory=/home/pi/STABLE
+ExecStart=/home/pi/STABLE/deploy/start_app.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
