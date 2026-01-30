@@ -1,9 +1,9 @@
 #!/bin/bash
 # Make scripts executable
-chmod +x /home/pi/STABLE/deploy/start_app.sh
+chmod +x /home/ta-pi/STABLE/deploy/start_app.sh
 
 # Link the service file to systemd
-sudo ln -sf /home/pi/STABLE/deploy/start_app_service.service /etc/systemd/system/start_app_service.service
+sudo ln -sf /home/ta-pi/STABLE/deploy/start_app_service.service /etc/systemd/system/start_app_service.service
 
 # Refresh systemd and enable
 sudo systemctl daemon-reload

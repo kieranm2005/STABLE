@@ -5,9 +5,9 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-User=pi
-WorkingDirectory=/home/pi/STABLE
-ExecStart=/home/pi/STABLE/deploy/start_app.sh
+User=ta-pi
+WorkingDirectory=/home/ta-pi/STABLE
+ExecStart=/home/ta-pi/STABLE/deploy/start_app.sh
 Restart=on-failure
 RestartSec=5
 

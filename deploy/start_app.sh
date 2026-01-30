@@ -2,7 +2,7 @@
 set -e
 
 REPO_URL="https://github.com/kieranm2005/STABLE.git"
-APP_DIR="/home/pi/STABLE"
+APP_DIR="/home/ta-pi/STABLE"
 BRANCH="main"
 CHECK_INTERVAL=300
 
