@@ -1,4 +1,4 @@
-from test import run
+from drawing import run
 
 
 def main():
