@@ -7,6 +7,9 @@ Wants=network-online.target
 Type=simple
 User=ta-pi
 WorkingDirectory=/home/ta-pi/STABLE
+Environment=DISPLAY=:0
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+Environment=SDL_AUDIODRIVER=dummy
 ExecStart=/home/ta-pi/STABLE/deploy/start_app.sh
 Restart=on-failure
 RestartSec=5
