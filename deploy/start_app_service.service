@@ -11,6 +11,7 @@ Environment=DISPLAY=:0
 Environment=XDG_RUNTIME_DIR=/run/user/1000
 Environment=WAYLAND_DISPLAY=wayland-0
 Environment=SDL_AUDIODRIVER=dummy
+ExecStartPre=/bin/sleep 3
 ExecStart=/home/ta-pi/STABLE/deploy/start_app.sh
 Restart=on-failure
 RestartSec=5
