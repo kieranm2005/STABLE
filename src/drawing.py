@@ -16,15 +16,13 @@ def _add_point(trail, x, y, draw_from_prev):
 	trail.append(TrailPoint(int(x), int(y), time.monotonic(), draw_from_prev))
 
 
-def run(on_touch=None):
+def run():
 	pygame.init()
 	screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 	width, height = screen.get_size()
 
 	clock = pygame.time.Clock()
 	trail = []
-	font = pygame.font.Font(None, 32)
-	debug_info = None
 	trail_duration = 2.5
 	line_width = 6
 	background = (0, 0, 0)
@@ -41,25 +39,17 @@ def run(on_touch=None):
 				x = event.x * width
 				y = event.y * height
 				_add_point(trail, x, y, False)
-				if on_touch is not None:
-					debug_info = on_touch(x, y, width, height)
 			elif event.type == pygame.FINGERMOTION:
 				x = event.x * width
 				y = event.y * height
 				_add_point(trail, x, y, True)
-				if on_touch is not None:
-					debug_info = on_touch(x, y, width, height)
 			elif event.type == pygame.MOUSEBUTTONDOWN:
 				x, y = event.pos
 				_add_point(trail, x, y, False)
-				if on_touch is not None:
-					debug_info = on_touch(x, y, width, height)
 			elif event.type == pygame.MOUSEMOTION:
 				if any(event.buttons):
 					x, y = event.pos
 					_add_point(trail, x, y, True)
-					if on_touch is not None:
-						debug_info = on_touch(x, y, width, height)
 
 		trail = [p for p in trail if now - p.T <= trail_duration]
 
@@ -77,14 +67,6 @@ def run(on_touch=None):
 			pygame.draw.line(line_surface, color, (p0.X, p0.Y), (p1.X, p1.Y), line_width)
 
 		screen.blit(line_surface, (0, 0))
-		if debug_info is not None:
-			dbg_text = (
-				f"x={debug_info['x']:.0f} y={debug_info['y']:.0f} | "
-				f"ax={debug_info['angle_x']:.1f} ay={debug_info['angle_y']:.1f} | "
-				f"hw={'ON' if debug_info['hardware_enabled'] else 'OFF'}"
-			)
-			text_surface = font.render(dbg_text, True, (0, 255, 0))
-			screen.blit(text_surface, (20, 20))
 		pygame.display.flip()
 		clock.tick(60)
 

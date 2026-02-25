@@ -1,38 +1,26 @@
 import threading
+import subprocess
+import sys
 from drawing import run
-from servo_control import ServoController
 
 
-def run_drawing(servo_controller):
-	def on_touch(x, y, width, height):
-		angle_x, angle_y = servo_controller.set_by_screen_position(x, y, width, height)
-		return {
-			"x": x,
-			"y": y,
-			"angle_x": angle_x,
-			"angle_y": angle_y,
-			"hardware_enabled": servo_controller.enabled,
-		}
-
-	run(on_touch=on_touch)
+def run_bb_t1():
+	"""Run BB-t1.py as a subprocess"""
+	subprocess.run([sys.executable, "BB-t1.py"])
 
 
 def main():
-	servo_controller = ServoController()
-	servo_controller.center()
-
-	try:
-		# Drawing loop blocks until exit (ESC or window close)
-		drawing_thread = threading.Thread(
-			target=run_drawing,
-			args=(servo_controller,),
-			name="DrawingThread",
-		)
-		drawing_thread.start()
-		drawing_thread.join()
-	finally:
-		servo_controller.center()
-		servo_controller.close()
+	# Create threads for concurrent execution
+	drawing_thread = threading.Thread(target=run, name="DrawingThread")
+	bb_t1_thread = threading.Thread(target=run_bb_t1, name="BB-t1Thread")
+	
+	# Start both threads
+	drawing_thread.start()
+	bb_t1_thread.start()
+	
+	# Wait for both threads to complete
+	drawing_thread.join()
+	bb_t1_thread.join()
 
 
 if __name__ == "__main__":
