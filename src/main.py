@@ -1,12 +1,14 @@
 import threading
 import subprocess
 import sys
+import os
 from drawing import run
 
 
 def run_bb_t1():
 	"""Run BB-t1.py as a subprocess"""
-	subprocess.run([sys.executable, "BB-t1.py"])
+	bb_t1_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "BB-t1.py")
+	subprocess.run([sys.executable, bb_t1_path])
 
 
 def main():
