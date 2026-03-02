@@ -9,8 +9,8 @@ from gpiozero import AngularServo
 
 # --- CONFIGURATION ---
 # GPIO Pins (BCM Numbering)
-PIN_SERVO_Y = 5
-PIN_SERVO_X = 6
+PIN_SERVO_Y = 5 #BLUE
+PIN_SERVO_X = 6 #GREEN
 
 # Servo Settings (Adjust min/max pulse width for your specific servos)
 # Standard servos usually have a pulse width range of 0.001 to 0.002 seconds
@@ -102,7 +102,7 @@ print("Initializing Servos...")
 # Initializing with initial_angle=0 (assumed flat)
 servo_x = AngularServo(PIN_SERVO_X, min_angle=-90, max_angle=90, 
                        min_pulse_width=SERVO_MIN_PULSE, max_pulse_width=SERVO_MAX_PULSE)
-servo_y = AngularServo(PIN_SERVO_Y, min_angle=-90, max_angle=90,
+servo_y = AngularServo(PIN_SERVO_Y, min_angle=90, max_angle=-90,
                        min_pulse_width=SERVO_MIN_PULSE, max_pulse_width=SERVO_MAX_PULSE)
 
 # --- INPUT DEVICE SETUP ---
@@ -233,4 +233,5 @@ except Exception as e:
     raise
 finally:
     servo_x.detach()
+
     servo_y.detach()
