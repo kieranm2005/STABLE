@@ -19,8 +19,8 @@ SERVO_MAX_PULSE = 0.0025
 
 # PID Constants (These MUST be tuned for your specific hardware mechanics)
 # Start with Kp, leave Ki and Kd at 0, then tune.
-KP = 0.02  # Proportional
-KI = 0.0  # Integral
+KP = 0.01  # Proportional
+KI = 0.00  # Integral
 KD = 0.01  # Derivative
 
 # Screen Resolution (Waveshare 7 inch is typically 1024x600 or 800x480)
@@ -235,5 +235,6 @@ finally:
     servo_x.detach()
 
     servo_y.detach()
+
 
 
